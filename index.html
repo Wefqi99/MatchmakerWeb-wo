@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Matchmaker Web WO</title>
+</head>
+
+
+<!--
+
+Author: Wefqi Odeh
+Project: MatchMaker for the Web
+
+All Rights Reserved.
+-->
+
+<body>
+    <h1>MatchMaker</h1>
+    <p>This is Wefqi's Version of MatchMaker!!!
+        In this questionaire you will be asked a series of questions and should respond with the appropriate drop down option!
+        5 = Storngly agree
+        4 = Agree
+        3 = Not sure
+        2 = Disagree
+        1 = Strongly Disagree
+        Depending on your responses, a score will be calculted to to show our compatability!
+        Remember, answer truthfully and have fun!  
+        <br>
+        <br>
+        lets Begin:
+
+
+
+    </p>
+    
+    <label>I hate Onions.</label><br>
+    <select id ="q1">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Either or</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br>
+
+    <br>
+
+    <label>I Enjoy Watching Netflix.</label><br>
+    <select id ="q2">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Either or</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br>
+
+    <br>
+
+    <label>I Love Videogames.</label><br>
+    <select id ="q3">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Either or</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br>
+
+    <br>
+
+    <label>I Like Cats.</label><br>
+    <select id ="q4">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Either or</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br>
+
+    <br>
+
+    <label>I Like Sand.</label><br>
+    <select id ="q5">
+        <option value="5">Strongly Agree</option>
+        <option value="4">Agree</option>
+        <option value="3">Either or</option>
+        <option value="2">Disagree</option>
+        <option value="1">Strongly Disagree</option>
+    </select>
+
+    <br>
+    <br>
+    <button onclick="calculateOurCompatability()">Calculate our Compatability</button>
+    <p id= "compatabilityScore"></p>
+
+
+
+
+<script>
+console.log("Starting Matchmaker for the Web by Wefqi Odeh")
+
+
+function calculateOurCompatability() {
+    console.log("Calculate our Compatability");
+
+    const DESIRED_ANSWER = [
+        5,
+        4,
+        5,
+        3,
+        1
+
+    ]
+
+    const ANSWER_WEIGHT = [
+        3, // onions are big for me
+        1, 
+        2,
+        1,
+        1
+    ]
+
+    const MAXIMUM_SCORE = 45;
+
+    let question1Choice = document.getElementById('q1').selectedOptions[0].value;
+    let question2Choice = document.getElementById('q2').selectedOptions[0].value;
+    let question3Choice = document.getElementById('q3').selectedOptions[0].value;
+    let question4Choice = document.getElementById('q4').selectedOptions[0].value;
+    let question5Choice = document.getElementById('q5').selectedOptions[0].value;
+
+    console.log("Question 1 Choice");
+    console.log(document.getElementById('q1').selectedOptions[0].text);
+    console.log(document.getElementById('q1').selectedOptions[0].value);
+    console.log(question1Choice);
+
+    console.log("Question 2 Choice");
+    console.log(document.getElementById('q2').selectedOptions[0].text);
+    console.log(document.getElementById('q2').selectedOptions[0].value);
+    console.log(question2Choice);
+
+    console.log("Question 3 Choice");
+    console.log(document.getElementById('q3').selectedOptions[0].text);
+    console.log(document.getElementById('q3').selectedOptions[0].value);
+    console.log(question3Choice);
+
+    console.log("Question 4 Choice");
+    console.log(document.getElementById('q4').selectedOptions[0].text);
+    console.log(document.getElementById('q4').selectedOptions[0].value);
+    console.log(question4Choice);
+
+    console.log("Question 5 Choice");
+    console.log(document.getElementById('q5').selectedOptions[0].text);
+    console.log(document.getElementById('q5').selectedOptions[0].value);
+    console.log(question5Choice);
+
+
+    let question1ComptabilityScore = 5 - Math.abs(question1Choice - DESIRED_ANSWER[0]);
+    question1ComptabilityScore = question1ComptabilityScore * ANSWER_WEIGHT[0]
+    let question2ComptabilityScore = 5 - Math.abs(question2Choice - DESIRED_ANSWER[1]);
+    question2ComptabilityScore = question2ComptabilityScore * ANSWER_WEIGHT[1]
+    let question3ComptabilityScore = 5 - Math.abs(question3Choice - DESIRED_ANSWER[2]);
+    question3ComptabilityScore = question3ComptabilityScore * ANSWER_WEIGHT[2]
+    let question4ComptabilityScore = 5 - Math.abs(question4Choice - DESIRED_ANSWER[3]);
+    question4ComptabilityScore = question4ComptabilityScore * ANSWER_WEIGHT[3]
+    let question5ComptabilityScore = 5 - Math.abs(question5Choice - DESIRED_ANSWER[4]);
+    question5ComptabilityScore = question5ComptabilityScore * ANSWER_WEIGHT[4]
+
+    console.log("choice1="+ question1ComptabilityScore);
+    console.log("choice2="+ question2ComptabilityScore);
+    console.log("choice3="+ question3ComptabilityScore);
+    console.log("choice4="+ question4ComptabilityScore);
+    console.log("choice5="+ question5ComptabilityScore);
+
+    let finaComptabilityScore = question1ComptabilityScore + question2ComptabilityScore + question3ComptabilityScore + question4ComptabilityScore + question5ComptabilityScore;
+
+    finaComptabilityScore *= 100/MAXIMUM_SCORE;
+    finaComptabilityScore = Math.round(finaComptabilityScore);
+    console.log("Total Compatability Score=" + finaComptabilityScore);
+
+    document.getElementById("compatabilityScore").innerHTML="Your Compatability Score is: " + finaComptabilityScore;
+
+}
+
+
+</script>
+
+</body>
+<html>
